@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2af69efa-adb2-48e4-8ddd-62d34bbd7221",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "2af69efa-adb2-48e4-8ddd-62d34bbd7221" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2af69efa-adb2-48e4-8ddd-62d34bbd7221" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EC650F58-D3C2-4C6D-AAE4-0C9A0158FC4D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2af69efa-adb2-48e4-8ddd-62d34bbd7221" : "monitorapp\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Monitor",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "trunk\/Monitor.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/code.taobao.org\/svn\/monitorapp",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2af69efa-adb2-48e4-8ddd-62d34bbd7221"
+    }
+  ]
+}

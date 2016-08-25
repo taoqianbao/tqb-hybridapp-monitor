@@ -1,0 +1,529 @@
+<!--
+	作者：taoqianbao@qq.com
+	时间：2015-10-20
+	描述：
+-->
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>监控平台</title>
+		<meta name="description" content="监控平台">
+		<meta name="keywords" content="监控平台">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="assets/i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-title" content="监控平台" />
+		<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+
+		<link rel="stylesheet" href="assets/css/layout.css" />
+
+		<script src="assets/js/jquery.min.js"></script>
+		<!--
+        	<script src="assets/js/modernizr.app.js"></script>
+        -->
+		<script src="assets/js/amazeui.min.js"></script>
+
+		<script src="assets/js/knockout-3.3.0.js"></script>
+		<script src="assets/js/knockout.mapping-latest.js"></script>
+		<script src="assets/js/echarts.js"></script>
+		<script src="assets/apps/tools.js"></script>
+		<script src="assets/apps/app.config.js"></script>
+		<script src="assets/apps/app.default.js"></script>
+		<script src="assets/apps/app.services.js"></script>
+		<script src="assets/apps/app.chart.js"></script>
+		<script src="assets/apps/app.layout.js"></script>
+	</head>
+
+	<body class="myapp mapfullscreen">
+		<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+		<!-- content start -->
+		<div id="loading-mask">
+			<div id="loading">
+				<span id="loading-msg">Loading ...</span>
+			</div>
+		</div>
+
+		<div class="am-tabs" id="chartTabs">
+			
+			<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+				<li class=""><a href="">图1</a></li>
+				<li class=""><a href="">图2</a></li>
+				<li class=""><a href="">图3</a></li>
+				<li class=""><a href="">图4</a></li>
+				<li class=""><a href="">图5</a></li>
+				<li class=""><a href="">图6</a></li>
+				<li class=""><a href="">图7</a></li>
+				<li class=""><a href="">图8</a></li>
+				<li class=""><a class="mainpage" href="">返回主页</a></li>
+			</ul>
+			<div class="am-tabs-bd">
+				<div id="tab1" class="am-tab-panel">
+
+					<div class="screen1" id="screen1" data-bind="with: screen1" data-tabid="0">
+
+						<div class="chinamap-tips chinamap-tips-layout" data-bind="with: tooltip">
+							<span data-bind="text:name"></span>
+							<br> 省份进线量占比： <span data-bind="text:x"></span>%
+							<br> 每百万回拨量占比： <span data-bind="text:y"></span>%
+						</div>
+
+						<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+						<div id="chartChinaMap"></div>
+
+						<table class="tableone">
+							<thead>
+								<tr>
+									<th colspan="2">各省进线量TOP5及每百万卡回拨量TOP5</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="label">
+										省份进线量占比TOP5
+									</td>
+									<td class="desc">
+										<span data-bind="text: content().strTop5acd"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="label">
+										每百万卡回拨量占比TOP5
+									</td>
+									<td class="desc">
+										<span data-bind="text: content().strTop5callback"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table class="tableone">
+							<thead>
+								<tr>
+									<th colspan="6">
+										各省份的进线量与每百万卡回拨量实际数据
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="label" width="25%">
+										地区
+									</td>
+
+									<!-- ko foreach: datalist() -->
+									<td class="label" width="15%">
+										<span data-bind="text: name"></span>
+									</td>
+									<!-- /ko -->
+								</tr>
+								<tr>
+									<td class="label">
+										进线量占比
+									</td>
+									<!-- ko foreach: datalist() -->
+									<td class="label">
+										<span data-bind="text: a"></span>
+									</td>
+									<!-- /ko -->
+								</tr>
+								<tr>
+									<td class="label">
+										回拨量占比
+									</td>
+									<!-- ko foreach: datalist() -->
+									<td class="label">
+										<span data-bind="text: b"></span>
+									</td>
+									<!-- /ko -->
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+				<div id="tab2" class="am-tab-panel ">
+					<!--
+	tab2
+-->
+					<div class="screen2" id="screen2" data-bind="with: screen2" data-tabid="1">
+
+						<div class="screen2-left">
+							<table class="screen2-table">
+								<tr>
+									<td class="label" style="width: 60%;"><span>每日累计人工呼入量</span></td>
+									<td class="number"><span data-bind="text: content().totalincallnum"></span></td>
+								</tr>
+							</table>
+							<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+							<div id="chartGauge1" class="mapcontainer" data-bind="attr:{ 'data-value': content().throughrate}"></div>
+							<div id="chartGauge2" class="mapcontainer" data-bind="attr:{ 'data-value': content().servicelevel}"></div>
+
+						</div>
+						<div class="screen2-right">
+							<table class="screen2-table">
+								<tr>
+									<td class="label" width="30%"><span>客服工作人数</span></td>
+									<td class="number" width="20%"><span data-bind="text: content().totalcustomer"></span></td>
+									<td class="label" width="30%"><span>当前值班人数</span></td>
+									<td class="number"><span data-bind="text: content().totalonduty"></span></td>
+								</tr>
+								<tr>
+									<td class="label"><span>队列等待通数</span></td>
+									<td class="number"><span data-bind="text: content().quenewaitnum"></span></td>
+									<td class="label"><span>最长等候时间</span></td>
+									<td class="number"><span data-bind="text: content().maxwaittime"></span></td>
+								</tr>
+							</table>
+							<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+							<div id="chartGauge" class="mapcontainer"></div>
+						</div>
+					</div>
+
+					<!--
+	tab2
+-->
+				</div>
+				<div id="tab3" class="am-tab-panel ">
+
+					<!--
+	tab3
+-->
+					<div class="screen3" id="screen3" data-bind="with: screen3" data-tabid="2">
+
+						<div class="am-g myapp-am-g" style="height: 50%; padding-top: 50px;">
+							<div class="am-u-sm-4 center">
+								<div class="circle outercircle">
+									<div class="circle innercircle">
+										<span>高价值</span>
+									</div>
+								</div>
+							</div>
+							<div class="am-u-sm-4 center">
+								<a href="javascript:;" class="blockone">
+									<span>接通率</span>
+									<span data-bind="text:content().throughrate_high + '%'"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-4 center">
+								<a href="javascript:;" class="blockone">
+									<span>服务级别</span>
+									<span data-bind="text:content().servicelevel_high + '%'"></span>
+								</a>
+							</div>
+						</div>
+						<div class="am-g myapp-am-g" style="height: 50%;padding-top: 50px;">
+							<div class="am-u-sm-4 center">
+								<div class="circle outercircle">
+									<div class="circle innercircle">
+										<span>挂失</span>
+									</div>
+								</div>
+							</div>
+							<div class="am-u-sm-4 center">
+								<a href="javascript:;" class="blockone">
+									<span>接通率</span>
+									<span data-bind="text:content().throughrate_loss + '%'"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-4 center">
+								<a href="javascript:;" class="blockone">
+									<span>服务级别</span>
+									<span data-bind="text:content().servicelevel_loss + '%'"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!--
+	tab3
+-->
+
+				</div>
+				<div id="tab4" class="am-tab-panel ">
+					<!--
+	tab4
+-->
+					<div class="screen4" id="screen4" data-bind="with: screen4" data-tabid="3">
+
+						<div class="am-g myapp-am-g chartAreaTopRow" data-bind="with:content">
+							<div class="am-u-sm-4 fullheight center">
+								<div class="circle outercircle">
+									<div class="circle innercircle center">
+										<span data-bind="text:name"><!--上海--> </span>
+									</div>
+								</div>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>接通率</span>
+									<span data-bind="text:throughrate +'%'"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>服务级别</span>
+									<span data-bind="text:servicelevel +'%'"></span>
+								</a>
+							</div>
+						</div>
+
+						<div class="am-g myapp-am-g chartAreaChartRow">
+							<div class="am-u-sm-4 fullheight" data-bind="with:content">
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">每日累计人工呼入量</span>
+									<span class="number" data-bind="text:totalincallnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">客服工作人数</span>
+									<span class="number" data-bind="text:totalcustomer"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">当前值班人数</span>
+									<span class="number" data-bind="text:totalonduty"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">队列等待通数</span>
+									<span class="number" data-bind="text:quenewaitnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">最长等候时间</span>
+									<span class="number" data-bind="text:maxwaittime"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-8 fullheight">
+								<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+								<div id="chartAreaSH" class="mapcontainer"></div>
+							</div>
+						</div>
+					</div>
+
+					<!--
+	tab4
+-->
+				</div>
+				<div id="tab5" class="am-tab-panel ">
+					<!--
+	tab5
+-->
+					<div class="screen5" id="screen5" data-bind="with: screen5" data-tabid="4">
+
+						<div class="am-g myapp-am-g chartAreaTopRow" data-bind="with:content">
+							<div class="am-u-sm-4 fullheight center">
+								<div class="circle outercircle">
+									<div class="circle innercircle center">
+										<span data-bind="text:name"><!--苏州--> </span>
+									</div>
+								</div>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>接通率</span>
+									<span data-bind="text:throughrate +'%'"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>服务级别</span>
+									<span data-bind="text:servicelevel +'%'"></span>
+								</a>
+							</div>
+						</div>
+
+						<div class="am-g myapp-am-g chartAreaChartRow">
+							<div class="am-u-sm-4 fullheight" data-bind="with:content">
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">每日累计人工呼入量</span>
+									<span class="number" data-bind="text:totalincallnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">客服工作人数</span>
+									<span class="number" data-bind="text:totalcustomer"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">当前值班人数</span>
+									<span class="number" data-bind="text:totalonduty"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">队列等待通数</span>
+									<span class="number" data-bind="text:quenewaitnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">最长等候时间</span>
+									<span class="number" data-bind="text:maxwaittime"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-8 fullheight">
+								<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+								<div id="chartAreaSZ" class="mapcontainer"></div>
+
+							</div>
+						</div>
+					</div>
+
+					<!--
+	tab5
+-->
+				</div>
+				<div id="tab6" class="am-tab-panel ">
+					<!--
+	tab6
+-->
+					<div class="screen6" id="screen6" data-bind="with: screen6" data-tabid="5">
+
+						<div class="am-g myapp-am-g chartAreaTopRow" data-bind="with:content">
+							<div class="am-u-sm-4 fullheight center">
+								<div class="circle outercircle">
+									<div class="circle innercircle center">
+										<span data-bind="text:name"><!--南宁--> </span>
+									</div>
+								</div>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>接通率</span>
+									<span data-bind="text:throughrate +'%'"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>服务级别</span>
+									<span data-bind="text:servicelevel +'%'"></span>
+								</a>
+							</div>
+						</div>
+
+						<div class="am-g myapp-am-g chartAreaChartRow">
+							<div class="am-u-sm-4 fullheight" data-bind="with:content">
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">每日累计人工呼入量</span>
+									<span class="number" data-bind="text:totalincallnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">客服工作人数</span>
+									<span class="number" data-bind="text:totalcustomer"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">当前值班人数</span>
+									<span class="number" data-bind="text:totalonduty"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">队列等待通数</span>
+									<span class="number" data-bind="text:quenewaitnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">最长等候时间</span>
+									<span class="number" data-bind="text:maxwaittime"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-8 fullheight">
+								<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+								<div id="chartAreaNN" class="mapcontainer"></div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--
+	tab6
+-->
+				</div>
+				<div id="tab7" class="am-tab-panel ">
+					<!--
+                    	作者：taoqianbao@qq.com
+                    	时间：2015-12-29
+                    	描述：tab7
+                    -->
+					<div class="screen7" id="screen7" data-bind="with: screen7" data-tabid="6">
+
+						<div class="am-g myapp-am-g chartAreaTopRow" data-bind="with:content">
+
+							<div class="am-u-sm-4 fullheight center">
+								<div class="circle outercircle">
+									<div class="circle innercircle center">
+										<span data-bind="text:name"><!--天津--> </span>
+									</div>
+								</div>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>接通率</span>
+									<span data-bind="text:throughrate +'%'"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-4 fullheight center">
+								<a href="javascript:;" class="blockone">
+									<span>服务级别</span>
+									<span data-bind="text:servicelevel +'%'"></span>
+								</a>
+							</div>
+						</div>
+
+						<div class="am-g myapp-am-g chartAreaChartRow">
+							<div class="am-u-sm-4 fullheight" data-bind="with:content">
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">每日累计人工呼入量</span>
+									<span class="number" data-bind="text:totalincallnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">客服工作人数</span>
+									<span class="number" data-bind="text:totalcustomer"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">当前值班人数</span>
+									<span class="number" data-bind="text:totalonduty"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">队列等待通数</span>
+									<span class="number" data-bind="text:quenewaitnum"></span>
+								</a>
+								<a class="chartTotle" style="height: 20%;">
+									<span class="label">最长等候时间</span>
+									<span class="number" data-bind="text:maxwaittime"></span>
+								</a>
+							</div>
+							<div class="am-u-sm-8 fullheight">
+								<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+								<div id="chartAreaTJ" class="mapcontainer"></div>
+							</div>
+						</div>
+					</div>
+
+					<!--
+                    	tab7
+                    -->
+				</div>
+				<div id="tab8" class="am-tab-panel ">
+					<!--
+                    	作者：taoqianbao@qq.com
+                    	时间：2015-12-29
+                    	描述：tab8
+                    -->
+
+					<div class="screen8" id="screen8" data-bind="with: screen8" data-tabid="0">
+
+						<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+						<div id="chartTopEightReson"></div>
+
+					</div>
+
+					<!--
+                    	tab8
+                    -->
+				</div>
+				<div id="tab0" class="am-tab-panel">
+					Loading...
+				</div>
+			</div>
+		</div>
+		<!-- content end -->
+	</body>
+
+</html>

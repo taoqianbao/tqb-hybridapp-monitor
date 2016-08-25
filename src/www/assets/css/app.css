@@ -1,0 +1,423 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+* {
+	font-size: 9px;
+}
+.fullscreen * {
+	font-size: 12px;
+}
+body {
+	background: #a9caf3;
+}
+.center {
+	text-align: center;
+}
+.fullheight{
+	height: 100%;
+}
+/*
+ * 
+ */
+.myapp-am-g>[class*=am-u-] {
+	border: 0px solid #dd514c;
+	border-collapse: collapse;
+	overflow: hidden;
+}
+[class*=am-u-] {
+	padding-left: 0;
+	padding-right: 0;
+}
+/*
+ * 
+ */
+.monitorapp-2015 {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.mapmodule {
+	border-right: solid 1px cornflowerblue;
+	border-bottom: solid 1px cornflowerblue;
+	height: 50%;
+	padding: 5px;
+	overflow: hidden;
+}
+.mapmodule.mapfullscreen {
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    background-color: #a9caf3;
+}
+
+.mapcontainer {
+	min-height: 100px; 
+	min-width: 100px; 
+	height: 100%; 
+	background: lightgrey;
+}
+.screen1,
+.screen3,
+.screen4,
+.screen5,
+.screen6,
+.screen7 {
+	width: 25%;
+	float: left;
+}
+.screen2 {
+	width: 50%;
+	float: left;
+}
+
+/*
+ * screen2
+ * 
+ */
+.screen2 .screen2-left {
+	width: 40%; float: left; height: 100%;
+}
+.screen2 .screen2-left .chartTotle{
+	height: 75px;
+} 
+.screen2 .screen2-right {
+	width: 60%; float: left; height: 100%; padding-left: 5px;
+}
+
+/*
+ * chartGauge
+ */
+#chartGauge {
+	height: 300px;	
+	height: -webkit-calc(100% - 90px);
+	height: calc(100% - 90px);
+}
+.no-csscalc .mapfullscreen #chartGauge {
+	height: 600px;
+}
+.screen2 #chartGauge1, .screen2 #chartGauge2  {
+	height: 120px;
+	height: -webkit-calc((100% - 80px) / 2);
+	height:calc((100% - 80px) / 2);
+}
+.mapfullscreen.screen2 #chartGauge1, .mapfullscreen.screen2 #chartGauge2 {
+	height: 320px;
+	height: -webkit-calc((100% - 80px) / 2);
+	height:calc((100% - 80px) / 2);
+}
+
+
+.screen2 .screen2-table {
+	height: 75px;
+	width: 100%;
+	margin: 0; padding: 0;
+}
+.screen2 .screen2-table td {
+	color: #fff; text-align: center; margin: 0; padding: 0; 
+}
+.screen2 .screen2-table .label{
+	background: #0070c0;
+}
+.screen2 .screen2-table .number{
+	background: #92d050;
+}
+.mapfullscreen .screen2-table span {
+	font-size: 20px; 
+}
+
+/*
+ * blockone
+ * 
+ */
+
+.blockone {
+	width: 60px;
+	height: 60px;
+	display: block;
+	background: #0270c8;
+	border: solid 1px #fff;	
+	text-align: center;		
+	font-weight: bold;
+	padding-top: 10px;
+	margin: 0 auto;
+	margin-top: 10px;	
+}
+.blockone:hover {
+	background: #2b8ddc;
+}
+.blockone span {
+	color: #FFF;
+}
+div.chart-summary .blockone {
+	padding: 10px;
+}
+.mapfullscreen .blockone span{
+	font-size: 20px;
+}
+div.mapfullscreen .blockone {
+	width: 140px;
+	height: 140px;
+	margin-top: 30px;
+	padding-top: 40px;
+}
+div.mapfullscreen .blockone span {
+	width: 100%; display: block;  
+}
+
+/*
+ * chartTotle
+ * 
+ */
+a.chartTotle {
+	display: inline-block;
+	width: 100%;
+	padding: 0;
+	border-bottom: solid 5px #a9caf3;	
+	clear: both;
+	overflow: hidden;
+}
+a.chartTotle span {
+	display: block;
+	float: left;
+	min-height: 30px;
+	height: 100%;
+	color: #fff;
+	text-align: center;
+}
+a.chartTotle .label {
+	width: 59%;
+	background: #0070c0;
+}
+a.chartTotle .number {
+	width: 40%;
+	background: #92d050;
+}
+div.topinfo a.chartTotle {
+	width: 40%;
+	float: left;
+}
+.mapfullscreen a.chartTotle{
+	/*border-bottom-color: #fff;*/
+	display: inline-block;
+	overflow:hidden;
+	white-space:nowrap;
+	vertical-align: middle;
+}
+.mapfullscreen a.chartTotle span {
+	font-size: 20px; height: auto; margin: 20px 0; padding: 10px 0;
+}
+
+/*
+	CIRCLE 
+ * */
+
+.circle {
+	border-radius: 50%;
+	display: inline-block;
+}
+.outercircle {
+	width: 80px;
+	height: 80px;
+	background: #9dde58;
+	position: relative;
+}
+.mapfullscreen .outercircle {
+	width: 100px;
+	height: 100px;
+	background: #9dde58;
+	position: relative;
+}
+.outercircle:hover {
+	background: #b5ec7b;
+}
+.innercircle {
+	width: 50px;
+	height: 50px;
+	background: #5e99e3;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	display: block;
+	right: 0;
+}
+.innercircle span {
+	color: #fff;
+	display: block;
+	line-height: 50px;
+	width: 100%;
+	text-align: center;
+}
+.mapfullscreen .innercircle {
+	width: 70px;
+	height: 70px;
+	background: #5e99e3;
+	position: absolute;
+	top: 15%;
+	left: 15%;
+	display: block;
+	right: 0;
+}
+.mapfullscreen .innercircle span {
+	color: #fff;
+	display: block;
+	line-height: 70px;
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+}
+
+/*
+ screen 1 tableone
+ */
+table.tableone {
+	border: solid 1px #000000;
+	background-color: #0070c0;
+	width: 100%;
+}
+
+table.tableone thead th {
+	background-color: #a9caf3;
+	text-align: center;
+	color: #6d9fca;
+}
+table.tableone td,table.tableone th {
+	padding: 5px;
+	margin: 5px;
+	text-align: center;
+}
+table.tableone td.label {
+	color: #fff;
+}
+table.tableone td.desc {
+	background-color: #92d050;
+}
+.mapfullscreen table.tableone td {border:solid #a9caf3; border-width:0px 2px 2px 0px; } 
+.mapfullscreen table.tableone td:last-child {border-width:0px 0 2px 0; }
+.mapfullscreen table.tableone th {border:solid #a9caf3; border-width:0px 2px 2px 0px; }
+.mapfullscreen table.tableone {border:solid #000; border-width:1px 1px 0 1px;}
+
+
+/* monitorapp fullscreen */
+
+.mapfullscreen {
+	width: 100%;
+	height: 100%;
+	float: none;
+	clear: both; 
+}
+.fullscreenClose {
+	height: 20px;
+	width: 100%;
+	display: none;
+}
+.mapfullscreen > .fullscreenClose {
+	display: block;
+}
+
+div.mapfullscreen .innercircle {
+	width: 140px;
+	height: 140px;
+	top: 30px;
+}
+div.mapfullscreen .outercircle {
+	width: 200px;
+	height: 200px;
+}
+div.mapfullscreen .innercircle span {
+	line-height: 130px;
+}
+
+
+.chartAreaTopRow {
+	height: 90px;
+}
+.chartAreaChartRow {
+	height: 300px;
+	height: -webkit-calc(100% - 90px);
+	height: calc(100% - 90px);
+}
+div.mapfullscreen .chartAreaTopRow {
+	height: 210px;
+}
+div.mapfullscreen .chartAreaChartRow {
+	height: 600px;
+	height: -webkit-calc(100% - 210px);
+	height: calc(100% - 210px);
+}
+
+.minhide {
+	display: none;
+}
+
+.screen1 .mapcontainer {
+	height: 100px;
+}
+.screen1 table.tableone {
+	height: 120px;
+	height: -webkit-calc((100% - 100px) / 2);
+	height: calc((100% - 100px) / 2);
+	width: 100%;
+} 
+
+.screen1 table.tableone td {
+	padding: 0; margin: 0;
+}
+
+div.mapfullscreen.screen1 > .minhide {
+	display: table;
+}
+
+div.mapfullscreen.screen1 > .mapcontainer {
+	width: 100%;
+	height: 600px;		/*no-csscalc*/ 
+	height: -webkit-calc(100% - 150px);
+	height: calc(100% - 150px); 
+}
+
+div.mapfullscreen.screen1 > table.tableone {
+	width: 50%; height: 150px; float: left;
+}
+
+.map-fs-exit{
+	position: absolute; z-index: 99; right: 5px; top: 2px; display: none;
+}
+.fullscreen .map-fs-exit {
+	display: block;
+}
+
+
+
+@media screen and (max-width: 960px) {
+	
+	/*
+	 * 兼容PAD
+	 */
+	
+	.monitorapp-2015 {
+		overflow: auto;
+	}
+	.screen1, .screen3, .screen4, .screen5, .screen6, .screen7, .screen2 {
+	    width: 50%;
+	}
+}
+
+
+@media screen and (max-width: 640px) {
+	/*
+	 * 兼容mobile
+	 */	
+	
+	.screen1, .screen3, .screen4, .screen5, .screen6, .screen7, .screen2 {
+	    width: 100%;
+	}	
+}
+
+@media screen and (max-height: 500px) {
+	.screen1, .screen3, .screen4, .screen5, .screen6, .screen7, .screen2 {
+	    height: 100%;
+	}	
+}
